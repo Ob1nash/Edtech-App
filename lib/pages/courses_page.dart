@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:edtech/pages/course_details.dart';
+import 'package:edtech/pages/enroll_page.dart';
 
 class CoursesPage extends StatelessWidget {
   @override
@@ -11,8 +12,10 @@ class CoursesPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            
             Padding(
               padding: EdgeInsets.all(16.0),
+              
               child: Row(
                 children: [
                   Expanded(
@@ -23,22 +26,21 @@ class CoursesPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 8),
-                  child:ElevatedButton(
-                    onPressed: () {
-                      // Search action
-                      print("Search button clicked");
-                    },
-                    child: Text("Search"),
-                    style: ElevatedButton.styleFrom(
-                      
-                      backgroundColor: Colors.blue, // Blue color for the button
-                      foregroundColor: Colors.white,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Search action
+                        print("Search button clicked");
+                      },
+                      child: Text("Search"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Colors.blue, // Blue color for the button
+                        foregroundColor: Colors.white,
+                      ),
                     ),
                   ),
-              ),
                 ],
               ),
             ),
@@ -50,7 +52,7 @@ class CoursesPage extends StatelessWidget {
               crossAxisSpacing: 16, // Space between columns
               mainAxisSpacing: 16, // Space between rows
               padding: EdgeInsets.all(16),
-              children: _buildCourseCards(), // Generate course cards
+              children: _buildCourseCards(context), // Generate course cards
             ),
           ],
         ),
@@ -58,20 +60,20 @@ class CoursesPage extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildCourseCards() {
+  List<Widget> _buildCourseCards(BuildContext context) {
     return [
-      _buildCourseCard('Course 1', 'assets/course1.jpg'),
-      _buildCourseCard('Course 2', 'assets/course2.jpg'),
-      _buildCourseCard('Course 3', 'assets/course3.jpg'),
-      _buildCourseCard('Course 4', 'assets/course1.jpg'),
-      _buildCourseCard('Course 5', 'assets/course2.jpg'),
-      _buildCourseCard('Course 6', 'assets/course3.jpg'),
-      _buildCourseCard('Course 7', 'assets/course1.jpg'),
-      _buildCourseCard('Course 8', 'assets/course3.jpg'),
+      _buildCourseCard(context, 'Course 1', 'assets/course1.jpg'),
+      _buildCourseCard(context, 'Course 2', 'assets/course2.jpg'),
+      _buildCourseCard(context, 'Course 3', 'assets/course3.jpg'),
+      _buildCourseCard(context, 'Course 4', 'assets/course1.jpg'),
+      _buildCourseCard(context, 'Course 5', 'assets/course2.jpg'),
+      _buildCourseCard(context, 'Course 6', 'assets/course3.jpg'),
+      _buildCourseCard(context, 'Course 7', 'assets/course1.jpg'),
+      _buildCourseCard(context, 'Course 8', 'assets/course3.jpg'),
     ];
   }
 
-  Widget _buildCourseCard(BuildContext context, String title, String imagePath) {
+  Widget _buildCourseCard( BuildContext context, String title, String imagePath) {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,14 +92,27 @@ class CoursesPage extends StatelessWidget {
               Flexible(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Enroll action
-                    print("Enrolled in $title");
+                    // Navigation to EnrollPage
+                    Navigator.push(
+                      context, // Ensure correct context
+                      MaterialPageRoute(
+                        builder: (context) => EnrollPage(
+                          courseTitle: 'Course 1', // Pass course title
+                          coursePrice: '99.99 USD', // Example price
+                          courseDescription:
+                              "This is the description of Course 1.", // Pass course description
+                        ),
+                      ),
+                    );
                   },
-                  child: Text('Enroll'),
+
+
+                  child: Text('Enroll Now'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2), // Less padding
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 2), // Less padding
                     minimumSize: Size(50, 30), // Smaller button
-                    backgroundColor: Colors.blue, 
+                    backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -106,26 +121,24 @@ class CoursesPage extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {
                     // Navigate to CourseDetailsPage
-                
-              
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CourseDetailsPage(
-                        courseTitle: title,
-                        courseImage: imagePath,
-                        courseDescription: "This is the course description for $title.",
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseDetailsPage(
+                          courseTitle: title,
+                          courseImage: imagePath,
+                          courseDescription:
+                              "This is the course description for $title.",
+                        ),
                       ),
-                    ),
-                  );
-              
-                    
+                    );
                   },
                   child: Text('Details'),
                   style: OutlinedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2), 
-                    minimumSize: Size(50, 30), 
-                    foregroundColor: const Color.fromARGB(255, 255, 255, 255), 
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    minimumSize: Size(50, 30),
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),

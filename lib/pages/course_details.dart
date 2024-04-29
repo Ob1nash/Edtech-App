@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:edtech/pages/enroll_page.dart';
 
 class CourseDetailsPage extends StatelessWidget {
   final String courseTitle;
@@ -30,13 +31,26 @@ class CourseDetailsPage extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Enroll action
+                  Navigator.push(
+                      context, // Ensure correct context
+                      MaterialPageRoute(
+                        builder: (context) => EnrollPage(
+                          courseTitle: 'Course 1', // Pass course title
+                          coursePrice: '99.99 USD', // Example price
+                          courseDescription:
+                              "This is the description of Course 1.", // Pass course description
+                        ),
+                      ),
+                    );
                   print("Enroll Now clicked for $courseTitle");
                 },
+
+
                 child: Text("Enroll Now"),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(120, 40), // Larger button
                   backgroundColor: Colors.blue, // Button color
+                  foregroundColor: Colors.white,
                 ),
               ),
             ),
@@ -58,6 +72,7 @@ class CourseDetailsPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(120, 40), // Larger button
                   backgroundColor: Colors.blue, // Button color
+                  foregroundColor: Colors.white,
                 ),
               ),
             ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:edtech/pages/enroll_page.dart';
+import 'package:edtech/pages/course_details.dart';
+import 'package:edtech/pages/watch_video_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -20,7 +23,7 @@ class HomePage extends StatelessWidget {
               height: 180, // Increase height to accommodate buttons
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: _buildPopularCourses(),
+                children: _buildPopularCourses(context),
               ),
             ),
             Padding(
@@ -34,7 +37,7 @@ class HomePage extends StatelessWidget {
               height: 150, // Enrolled courses section
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: _buildEnrolledCourses(),
+                children: _buildEnrolledCourses(context),
               ),
             ),
             Padding(
@@ -57,19 +60,19 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildPopularCourses() {
+  List<Widget> _buildPopularCourses(context) {
     return [
-      _buildPopularCourseCard('Course 1', 'assets/course1.jpg'),
-      _buildPopularCourseCard('Course 2', 'assets/course2.jpg'),
-      _buildPopularCourseCard('Course 3', 'assets/course3.jpg'),
-    ];
+      _buildPopularCourseCard(context, 'Course 1', 'assets/course1.jpg'),
+      _buildPopularCourseCard(context, 'Course 2', 'assets/course2.jpg'),
+      _buildPopularCourseCard(context, 'Course 3', 'assets/course3.jpg'),
+    ]; 
   }
 
-  List<Widget> _buildEnrolledCourses() {
+  List<Widget> _buildEnrolledCourses(context) {
     return [
-      _buildEnrolledCourseCard('Enrolled 1', 'assets/course1.jpg'),
-      _buildEnrolledCourseCard('Enrolled 2', 'assets/course2.jpg'),
-      _buildEnrolledCourseCard('Enrolled 3', 'assets/course3.jpg'),
+      _buildEnrolledCourseCard(context, 'Enrolled 1', 'assets/course1.jpg'),
+      _buildEnrolledCourseCard(context, 'Enrolled 2', 'assets/course2.jpg'),
+      _buildEnrolledCourseCard(context, 'Enrolled 3', 'assets/course3.jpg'),
     ];
   }
 
@@ -81,7 +84,7 @@ class HomePage extends StatelessWidget {
     ];
   }
 
-  Widget _buildPopularCourseCard(String title, String imagePath) {
+  Widget _buildPopularCourseCard(BuildContext context, title, String imagePath) {
     return Card(
       child: Container(
         width: 160, // Wider to fit buttons
@@ -101,9 +104,23 @@ class HomePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Handle enroll action
+
+
+                    Navigator.push(
+                      context, // Ensure correct context
+                      MaterialPageRoute(
+                        builder: (context) => EnrollPage(
+                          courseTitle: 'Course 1', // Pass course title
+                          coursePrice: '99.99 USD', // Example price
+                          courseDescription:
+                              "This is the description of Course 1.", // Pass course description
+                        ),
+                      ),
+                    );
                     print("Enrolled in $title");
                   },
+
+
                   child: Text('Enroll'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Less padding
@@ -114,9 +131,21 @@ class HomePage extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    // Handle details action
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseDetailsPage(
+                          courseTitle: title,
+                          courseImage: imagePath,
+                          courseDescription:
+                              "This is the course description for $title.",
+                        ),
+                      ),
+                    );
                     print("Details for $title");
                   },
+
+
                   child: Text('Details'),
                   style: OutlinedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4), // Less padding
@@ -134,7 +163,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildEnrolledCourseCard(String title, String imagePath) {
+  Widget _buildEnrolledCourseCard(BuildContext context, title, String imagePath) {
     return Card(
       child: Container(
         width: 120, // Width to fit the watch button
@@ -153,7 +182,18 @@ class HomePage extends StatelessWidget {
             Flexible(
             child: ElevatedButton(
               onPressed: () {
-                // Handle watch action
+               Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WatchVideoPage(
+                              courseTitle: 'Course 1', // Course title
+                              recentLecture: 'https://www.youtube.com/watch?v=kz184QIO4ZQ&list=PLxCzCOWd7aiEXg5BV10k9THtjnS48yI-T', // Video URL
+                              otherLectures: ['Lecture 2', 'Lecture 3', 'Lecture 4'], // 
+                               currentLectureIndex: 0,
+                              
+                            ),
+                          ),
+                        );
                 print("Watching $title");
               },
 
