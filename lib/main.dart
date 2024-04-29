@@ -1,9 +1,11 @@
+import 'package:edtech/pages/info_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';   // Import the page files
 import 'pages/library_page.dart';
 import 'pages/courses_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/settings_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -32,7 +34,8 @@ class _MainPageState extends State<MainPage> {
     CoursesPage(),
     HomePage(),    // Middle
     ProfilePage(),
-    SettingsPage(), // Right side
+    SettingsPage(),
+    InfoPage() // Right side
   ];
 
   @override
@@ -55,6 +58,10 @@ class _MainPageState extends State<MainPage> {
           IconButton(
             icon: Icon(Icons.info),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage()),
+              );
               print("Information icon clicked");
             },
           ),

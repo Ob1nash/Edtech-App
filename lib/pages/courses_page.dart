@@ -5,13 +5,21 @@ import 'package:edtech/pages/enroll_page.dart';
 class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Courses'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Courses'),
+      // ),
+      
       body: SingleChildScrollView(
         child: Column(
+          
           children: [
+            SizedBox(height: 20),
+            Text(
+              'Courses',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
             
             Padding(
               padding: EdgeInsets.all(16.0),
@@ -134,6 +142,8 @@ class CoursesPage extends StatelessWidget {
                       ),
                     );
                   },
+
+
                   child: Text('Details'),
                   style: OutlinedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),

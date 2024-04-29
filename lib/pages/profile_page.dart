@@ -8,23 +8,28 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // Profile information and progress data
   String profilePicture = 'assets/default_profile.jpg';
-  String name = 'John Doe';
-  String standard = '10th Grade';
+  String name = 'Paul Attredis';
+  String standard = '12th Grade';
   String goal = 'Engineer';
   double progress = 0.65; // Example progress: 65%
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Profile'),
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 16),
+              Text(
+                "Profile",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               // Profile Picture Section
               Center(
                 child: GestureDetector(
