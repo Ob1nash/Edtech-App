@@ -31,7 +31,10 @@ class CoursesPage extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: 'Search for courses...',
                         border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                       ),
+                      style: TextStyle(fontSize: 14),
+                      
                     ),
                   ),
                   Container(

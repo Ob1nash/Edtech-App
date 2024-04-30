@@ -72,11 +72,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   });
                 },
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 48),
               Text(
                 "Progress",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
+
+              SizedBox(height: 16),
               // Progress Bar with Percentage
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

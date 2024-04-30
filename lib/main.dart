@@ -5,19 +5,38 @@ import 'pages/library_page.dart';
 import 'pages/courses_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/settings_page.dart';
+import 'pages/login_page.dart';
 
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isLoggedIn = false; // Variable to track login state
+
+  void _login() {
+    setState(() {
+      _isLoggedIn = true; // User is now logged in
+    });
+  }
+   void _SignUp() {
+    // Logic to handle sign-up
+    print("Navigating to sign-up");
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
-      home: MainPage(), // Use the MainPage as the starting page
+      // home: MainPage(), // Use the MainPage as the starting page
+      home: _isLoggedIn ? MainPage() : LoginPage(onLogin: _login, onSignUp: _SignUp), // Redirect to MainPage after login
     );
   }
 }
@@ -97,6 +116,15 @@ class _MainPageState extends State<MainPage> {
                 Navigator.pop(context);
               },
             ),
+
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('logout'),
+              onTap: () {
+                print ("Logout");
+              },
+            ),
+
           ],
         ),
       ),
