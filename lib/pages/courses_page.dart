@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:edtech/pages/course_details.dart';
 import 'package:edtech/pages/enroll_page.dart';
+import 'package:flutter/widgets.dart';
 
 class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       // appBar: AppBar(
       //   title: Text('Courses'),
       // ),
@@ -56,7 +58,9 @@ class CoursesPage extends StatelessWidget {
               ),
             ),
             // Grid of course cards
-            GridView.count(
+            
+            
+              GridView.count(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               crossAxisCount: 2, // 2 cards in a row
@@ -65,6 +69,8 @@ class CoursesPage extends StatelessWidget {
               padding: EdgeInsets.all(16),
               children: _buildCourseCards(context), // Generate course cards
             ),
+            
+            
           ],
         ),
       ),
@@ -89,7 +95,7 @@ class CoursesPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(imagePath, fit: BoxFit.cover, height: 100),
+          Image.asset(imagePath, fit: BoxFit.cover, height: 90),
           SizedBox(height: 2),
           Text(
             title,
@@ -118,11 +124,11 @@ class CoursesPage extends StatelessWidget {
                   },
 
 
-                  child: Text('Enroll Now'),
+                  child: Text('Enroll'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                         horizontal: 8, vertical: 2), // Less padding
-                    minimumSize: Size(50, 30), // Smaller button
+                    minimumSize: Size(60, 30), // Smaller button
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
                   ),
@@ -150,7 +156,7 @@ class CoursesPage extends StatelessWidget {
                   child: Text('Details'),
                   style: OutlinedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    minimumSize: Size(50, 30),
+                    minimumSize: Size(60, 30),
                     foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: Color.fromARGB(255, 0, 0, 0),
                   ),
